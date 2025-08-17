@@ -1,0 +1,34 @@
+name: Build MineyMods-Core Plugin
+
+# Run this workflow on pushes to main branch or when you manually trigger it
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Java (Minecraft plugins usually use Java 17)
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+
+      # Step 3: Build using Maven
+      - name: Build with Maven
+        run: mvn clean package
+
+      # Step 4: Upload the built jar so you can download it
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MineyMods-Core-jar
+          path: target/*.jar
