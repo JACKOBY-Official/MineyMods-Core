@@ -1,0 +1,16 @@
+name: MineyMods-Core
+version: 1.0.0
+main: com.mineymods.core.Main
+api-version: 1.20
+author: YourNameHere
+
+commands:
+  mmc:
+    description: Main plugin command
+    usage: /mmc <reload>
+    permission: mmc.config.reload
+
+permissions:
+  mmc.config.reload:
+    description: Reload all plugin configs
+    default: op
